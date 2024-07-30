@@ -1,0 +1,22 @@
+{
+  "name": "assignment",
+  "version": "1.0.0",
+  "description": "CONVIN.AI assignment",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha integration.test.js",
+    "start": "node index.js" 
+  },
+  "author": "ayushjangid34@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "exceljs": "^4.4.0",
+    "express": "^4.19.2",
+    "mocha": "^10.7.0",
+    "mysql2": "^3.11.0"
+  },
+  "devDependencies": {
+    "chai": "^5.1.1",
+    "supertest": "^7.0.0"
+  }
+}
