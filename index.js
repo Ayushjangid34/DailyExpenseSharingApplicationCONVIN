@@ -57,26 +57,32 @@ app.post('/createUser', (req, res) => {
 // This will work using both email and id for user details retrieval, but id is prioritized over email. If both email and id are provided in the request parameters and if the id is incorrect, the API will not respond, even if the email is correct.
 app.get('/user/info', (req, res) => {
     const { email, id } = req.query;
-    if (!email && !id) {
-        return res.status(400).json({ error: 'Either email or id is required' });
-    }
     // query that can be modified according to Email or ID
-    let query = 'SELECT * FROM users WHERE ';
+    let query = `SELECT 
+    id,
+    email,
+    first_name,
+    middle_name,
+    last_name,
+    mobile_number,
+    DATE_FORMAT(joining, '%Y-%m-%dT%H:%i:%s'),
+    DATE_FORMAT(last_update, '%Y-%m-%dT%H:%i:%s')
+FROM users WHERE `
     let queryParam = [];
     if( id ){
         if( isNaN(id) ){
             return res.status(400).json({ error: 'Invalid ID format' });
         }
-        query += 'id = ?';
+        query += 'id = ?;';
         queryParam.push(id);
     } else if (email) {
          // Email validation
         if ( !validateEmail(email)) {
             return res.status(400).json({ error: 'Incorrect Email' });
         }
-        query += 'email = ?';
+        query += 'email = ?;';
         queryParam.push(email);
-    }
+    } else return res.status(400).json({ error: 'Either email or id is required' });
     db.query(query, queryParam, (err, results) => {
         if (err) {
             console.error('Error retrieving user details:', err);
@@ -119,21 +125,12 @@ app.get('/user/:user_id/expenses', (req, res) => {
         }
         try {
             const dateValue = new Date(date);
-            const currentDate = new Date();
-            
-            // Check if date is valid
-            if (isNaN(dateValue.getTime())) {
+            const dateTest = new Date(date + 'T00:00:00.000Z').toISOString().split('T')[0];
+            if( dateTest !== date )
                 return res.status(400).json({ error: 'Invalid date value.' });
-            }
-
-            // Normalize the date for comparison
-            const normalizedDateValue = new Date(date);
-            normalizedDateValue.setHours(0, 0, 0, 0); // Reset time part to 00:00:00
-
-            // Compare dates
-            if (normalizedDateValue > currentDate) {
+            // Check if the date is in the future
+            if (new Date(new Date().toLocaleDateString()) < new Date(new Date(dateValue).toLocaleDateString()))
                 return res.status(400).json({ error: 'Future Date is not allowed!' });
-            }
         } catch (error) {
             console.error('Date validation error:', error);
             return res.status(400).json({ error: 'Invalid date value.' });
@@ -164,21 +161,12 @@ app.get('/expenses/overall', (req, res) => {
         } 
         try {
             const dateValue = new Date(date);
-            const currentDate = new Date();
-            
-            // Check if date is valid
-            if (isNaN(dateValue.getTime())) {
+            const dateTest = new Date(date + 'T00:00:00.000Z').toISOString().split('T')[0];
+            if( dateTest !== date )
                 return res.status(400).json({ error: 'Invalid date value.' });
-            }
-
-            // Normalize the date for comparison
-            const normalizedDateValue = new Date(date);
-            normalizedDateValue.setHours(0, 0, 0, 0); // Reset time part to 00:00:00
-
-            // Compare dates
-            if (normalizedDateValue > currentDate) {
+            // Check if the date is in the future
+            if (new Date(new Date().toLocaleDateString()) < new Date(new Date(dateValue).toLocaleDateString()))
                 return res.status(400).json({ error: 'Future Date is not allowed!' });
-            }
         } catch (error) {
             console.error('Date validation error:', error);
             return res.status(400).json({ error: 'Invalid date value.' });
@@ -266,19 +254,16 @@ app.post('/expenses/add', (req, res) => {
             return res.status(400).json({ error: 'Invalid date-time format. Expected format: YYYY-MM-DDTHH:mm:ss' });
         }
         try {
-            // Parse the date-time string
-            const expenseDateTime = new Date(expense_date_time + 'Z'); // Adding 'Z' to interpret as UTC
+            const expenseDateTime = new Date(expense_date_time); // Converting local time to UTC
+            const dateTest = new Date(expense_date_time + 'Z').toISOString().split('.')[0]; // converting to user provided local time to check validity of user provided time
             
-            // Convert to ISO string for comparison
-            const formattedDateTime = expenseDateTime.toISOString().split('.')[0]; // Exclude milliseconds and 'Z'
-            
-            if (formattedDateTime !== expense_date_time) {
+            if (dateTest !== expense_date_time) {
                 return res.status(400).json({ error: 'Invalid Date-time!' });
             }
             
             // Check if the date is in the future
             if (new Date() < expenseDateTime) {
-                return res.status(400).json({ error: 'Future Date-time is not allowed!' });
+                return res.status(400).json({ error: 'Future Date is not allowed!' });
             }
         } catch (error) {
             console.error('Date-time validation error:', error);
@@ -457,21 +442,12 @@ app.get('/expenses/balance-sheet', async (req, res) => {
         } 
         try {
             const dateValue = new Date(date);
-            const currentDate = new Date();
-            
-            // Check if date is valid
-            if (isNaN(dateValue.getTime())) {
+            const dateTest = new Date(date + 'T00:00:00.000Z').toISOString().split('T')[0];
+            if( dateTest !== date )
                 return res.status(400).json({ error: 'Invalid date value.' });
-            }
-
-            // Normalize the date for comparison
-            const normalizedDateValue = new Date(date);
-            normalizedDateValue.setHours(0, 0, 0, 0); // Reset time part to 00:00:00
-
-            // Compare dates
-            if (normalizedDateValue > currentDate) {
-                return res.status(400).json({ error: 'Future Date is not allowed!' });
-            }
+            // Check if the date is in the future
+            if (new Date(new Date().toLocaleDateString()) < new Date(new Date(dateValue).toLocaleDateString()))
+                return res.status(400).json({ error: 'Future Date-time is not allowed!' });
         } catch (error) {
             console.error('Date validation error:', error);
             return res.status(400).json({ error: 'Invalid date value.' });
