@@ -65,8 +65,8 @@ app.get('/user/info', (req, res) => {
     middle_name,
     last_name,
     mobile_number,
-    DATE_FORMAT(joining, '%Y-%m-%dT%H:%i:%s'),
-    DATE_FORMAT(last_update, '%Y-%m-%dT%H:%i:%s')
+    DATE_FORMAT(joining, '%Y-%m-%dT%H:%i:%s') AS Joining,
+    DATE_FORMAT(last_update, '%Y-%m-%dT%H:%i:%s') AS Last_update
 FROM users WHERE `
     let queryParam = [];
     if( id ){
