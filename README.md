@@ -81,7 +81,7 @@ This repository contains the backend project that was an assignment from COVIN.A
           "mobile_number": "string",
           "Joining": "string",
           "Last_update": "string"
-    }
+      }
       ```
   - **Example Request:**
     ```http
@@ -133,13 +133,22 @@ This repository contains the backend project that was an assignment from COVIN.A
     ```json
     [
         {
-            "expense_id": 101,
-            "title": "Lunch",
-            "description": "Lunch at café",
-            "expense_date": "2024-07-30T12:00:00",
-            "split_method": "equal",
-            "total_amount": 50.00,
-            "amount_owed": 25.00
+            "expense_id": 1,
+            "title": "Dinner",
+            "description": "Dinner at restaurant",
+            "expense_date": "2024-07-30T20:00:00",
+            "split_method": "percentage",
+            "total_amount": "1234243.000",
+            "amount_owed": "617121.500"
+        },
+        {
+            "expense_id": 2,
+            "title": "Home Repair",
+            "description": "Home repairing while vacations",
+            "expense_date": "2024-07-30T20:00:00",
+            "split_method": "percentage",
+            "total_amount": "1234243.000",
+            "amount_owed": "185136.449"
         }
     ]
     ```
@@ -150,7 +159,7 @@ This repository contains the backend project that was an assignment from COVIN.A
 - **Method:** `GET`
 - **Description:** Retrieve overall expenses and user summaries.
 - **Query Parameters:**
-    - `date` (optional): Filter expenses by date in `YYYY-MM-DD` format.
+    - `date` (optional): used when we want only a particular date's expenses
 - **Response:**
     - **Success (200):**
       ```json
@@ -186,24 +195,47 @@ This repository contains the backend project that was an assignment from COVIN.A
     ```json
     {
         "overall_summary": {
-            "total_expenses": 3,
-            "total_amount_spent": 150.00
+            "total_expenses": 2,
+            "total_amount_spent": 2468486
         },
         "expenses": [
             {
-                "expense_id": 101,
-                "title": "Lunch",
-                "description": "Lunch at café",
-                "expense_date": "2024-07-30T12:00:00",
-                "total_amount": 50.00,
-                "split_method": "equal"
+                "expense_id": 1,
+                "title": "Dinner",
+                "description": "Dinner at restaurant",
+                "expense_date": "2024-07-30T20:00:00",
+                "total_amount": "1234243.000",
+                "split_method": "percentage"
+            },
+            {
+                "expense_id": 2,
+                "title": "Home Repair",
+                "description": "Home repairing while vacations",
+                "expense_date": "2024-07-30T20:00:00",
+                "total_amount": "1234243.000",
+                "split_method": "percentage"
             }
         ],
         "user_summary": [
             {
+                "user_id": 4,
+                "email": "emily.davis@example.com",
+                "total_amount_owed": "0.000"
+            },
+            {
                 "user_id": 1,
                 "email": "john.doe@example.com",
-                "total_amount_owed": 25.00
+                "total_amount_owed": "802257.949"
+            },
+            {
+                "user_id": 3,
+                "email": "michael.johnson@example.com",
+                "total_amount_owed": "469012.341"
+            },
+            {
+                "user_id": 2,
+                "email": "sarah.connor@example.com",
+                "total_amount_owed": "1197215.710"
             }
         ]
     }
@@ -280,7 +312,7 @@ This repository contains the backend project that was an assignment from COVIN.A
 - **Method:** `GET`
 - **Description:** Generate and download a balance sheet in Excel format.
 - **Query Parameters:**
-    - `date` (optional): Filter by date in `YYYY-MM-DD` format.
+    - `date` (optional): Used to download data accociated to this particular date only
 - **Response:**
     - **Success (200):** Returns an Excel file with individual and overall expenses.
  
