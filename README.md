@@ -330,7 +330,7 @@ npm test
 Feel free to ask queries ! 😊
 
 ## 🔗 Links
-[![Gmail](https://img.shields.io/badge/Gmail-%23D14836?style=for-the-badge&logo=gmail&logoColor=white)](ayushjangid34@gmail.com)
+[![Gmail](https://img.shields.io/badge/Gmail-%23D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:ayushjangid34@gmail.com)
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ayushjangid34)
-[![Phone](https://img.shields.io/badge/📞%20Phone-%23007BFF?style=for-the-badge&logo=phone&logoColor=white)](+917568983187)
+[![Phone](https://img.shields.io/badge/📞%20Phone-%23007BFF?style=for-the-badge&logo=phone&logoColor=white)](tel:+917568983187)
 
