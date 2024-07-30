@@ -78,8 +78,10 @@ This repository contains the backend project that was an assignment from COVIN.A
           "first_name": "string",
           "middle_name": "string",
           "last_name": "string",
-          "mobile_number": "string"
-      }
+          "mobile_number": "string",
+          "Joining": "string",
+          "Last_update": "string"
+    }
       ```
   - **Example Request:**
     ```http
@@ -93,8 +95,10 @@ This repository contains the backend project that was an assignment from COVIN.A
         "first_name": "John",
         "middle_name": "M",
         "last_name": "Doe",
-        "mobile_number": "9876543210"
-    }
+        "mobile_number": "9876543210",
+        "Joining": "2024-07-31T03:57:14",
+        "Last_update": "2024-07-31T03:57:14"
+  }
     ```  
 
 ### Retrieve User Expenses
@@ -217,7 +221,7 @@ This repository contains the backend project that was an assignment from COVIN.A
         "expenseAmount": "number",
         "title": "string",
         "description": "string",
-        "expense_date_time": "string",
+        "expense_date_time": "string", //Optional 
         "split_method": "string",
         "participants": [
             {
@@ -239,29 +243,33 @@ This repository contains the backend project that was an assignment from COVIN.A
     POST /expenses/add
     Content-Type: application/json
 
-    {
-        "user_id": 1,
-        "expenseAmount": 100.00,
-        "title": "Dinner",
-        "description": "Dinner at restaurant",
-        "expense_date_time": "2024-07-30T20:00:00",
-        "split_method": "percentage",
-        "participants": [
-            {
-                "participant_id": 1,
-                "split_value": 50
-            },
-            {
-                "participant_id": 2,
-                "split_value": 50
-            }
-        ]
+   {
+      "user_id": 1,
+      "expenseAmount": 1234243.00,
+      "title": "Dinner",
+      "description": "Dinner at restaurant",
+      "expense_date_time": "2024-07-30T20:00:00",
+      "split_method": "percentage",
+      "participants": [
+          {
+              "participant_id": 1,
+              "split_value": 50
+          },
+          {
+              "participant_id": 2,
+              "split_value": 17
+          },
+          {
+              "participant_id": 3,
+              "split_value": 33
+          }
+      ]
     }
     ```
 - **Example Response:**
     ```json
     {
-        "ExpenseID": 102
+      "ExpenseID": 1
     }
     ```
    
