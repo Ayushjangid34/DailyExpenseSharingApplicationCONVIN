@@ -363,7 +363,7 @@ npm start
 npm test
 ```
 ## Additional Point to keep in Mind
-- Always refer to the API documentation for logical requests.
++ Always refer to the API documentation for logical requests.
 + The person creating the expense split must be a participant.
 + Ensure that every participant is registered before making API requests to avoid server errors.
 
