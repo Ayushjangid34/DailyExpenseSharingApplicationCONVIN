@@ -298,7 +298,7 @@ app.post('/expenses/add', (req, res) => {
         if (!amountRegex.test(participant.split_value) && split_method !== "equal") {
             return res.status(400).json({ error: 'Invalid Split Value!' });
         }
-        if ( split_method === "percentage" && participant.split_value >= 100) {
+        if ( split_method === "percentage" && participant.split_value > 100) {
             return res.status(400).json({ error: 'Split value cannot exceed 100% while using percentage split method !' });
         }
     });
