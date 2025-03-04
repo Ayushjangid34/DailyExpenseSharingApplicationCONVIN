@@ -353,11 +353,11 @@ Make sure you have the following installed on your system:
    > **NOTE:** This command will drop the `DailyExpSharingApp` database every time it is executed. If you are an existing user, running this command will destroy all your previous data and set up a new database. I'm also using this command every time to clean the database and execute test cases without any interruptions. Please execute it wisely.
 
    ```bash
-   mysql -u <username> -p < MySQLDB.sql
+   mysql -u <username> -p < MySQL.sql
    ```
    Example:
     ```bash
-   mysql -u root -p < MySQLDB.sql
+   mysql -u root -p < MySQL.sql
    ```
 
 4. **Configure Environment Variables:**
