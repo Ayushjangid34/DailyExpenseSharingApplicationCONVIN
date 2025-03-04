@@ -1,0 +1,383 @@
+{
+	"info": {
+		"_postman_id": "4ad0bd2c-f50c-426d-8d33-0c53907ce38b",
+		"name": "DailyExpesneTracking",
+		"description": "This collection includes the APIs that can be used to test the project ! ! !",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39808649"
+	},
+	"item": [
+		{
+			"name": "create user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"string\",\n    \"first_name\": \"string\",\n    \"middle_name\": \"string\",\n    \"last_name\": \"string\",\n    \"mobile_number\": \"string\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/user/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"create"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "User1",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"Ayushjangid34@gmail.com\",\n    \"first_name\": \"Ayush\",\n    \"last_name\": \"Jangid\",\n    \"mobile_number\": \"7568983187\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"create"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "User2",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"Abhimanyu4@gmail.com\",\n    \"first_name\": \"Abhi\",\n    \"last_name\": \"Sharma\",\n    \"mobile_number\": \"9068897587\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"create"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "User3",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"Laxshya21@gmail.com\",\n    \"first_name\": \"Laxhya\",\n    \"last_name\": \"Saraswat\",\n    \"mobile_number\": \"9561983287\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/user/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user",
+								"create"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "add expenses",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"user_id\": \"integer\",\n    \"expenseAmount\": \"number\",\n    \"title\": \"string\",\n    \"description\": \"string\",\n    \"expense_date_time\": \"string\", //Optional \n    \"split_method\": \"string\",\n    \"participants\": [\n        {\n            \"participant_id\": \"integer\",\n            \"split_value\": \"number\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/expense/add/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"expense",
+						"add",
+						""
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Exp1",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 1,\n    \"expenseAmount\": 99999999.999,\n    \"title\": \"Dinner\",\n    \"description\": \"Dinner at restaurant\",\n    \"expense_date_time\": \"2024-07-30T20:00:00\",\n    \"split_method\": \"percentage\",\n    \"participants\": [\n        {\n            \"participant_id\": 1,\n            \"split_value\": 100\n        },\n        {\n            \"participant_id\": 2,\n            \"split_value\": 0\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/expense/add/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"expense",
+								"add",
+								""
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Exp2",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 1,\n    \"expenseAmount\": 994359.93,\n    \"title\": \"Salon\",\n    \"description\": \"\",\n    \"expense_date_time\": \"2024-08-06T20:45:00\",\n    \"split_method\": \"exact\",\n    \"participants\": [\n        {\n            \"participant_id\": 1,\n            \"split_value\": 3553\n        },\n        {\n            \"participant_id\": 3,\n            \"split_value\": 990806.93\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/expense/add/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"expense",
+								"add",
+								""
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				},
+				{
+					"name": "Exp3",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"user_id\": 1,\n    \"expenseAmount\": 1.999,\n    \"title\": \"Exp\",\n    \"description\": \"\",\n    \"expense_date_time\": \"2025-01-26T19:34:00\",\n    \"split_method\": \"equal\",\n    \"participants\": [\n        {\n            \"participant_id\": 2\n        },\n        {\n            \"participant_id\": 3\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/expense/add/",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"expense",
+								"add",
+								""
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": null
+				}
+			]
+		},
+		{
+			"name": "get user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/user/info?email=ayushjangid34@gmail.com&id=1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"user",
+						"info"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "ayushjangid34@gmail.com",
+							"description": "optional in case if user id is correctly provided otherwise can be used alternatively"
+						},
+						{
+							"key": "id",
+							"value": "1",
+							"description": "Should be correct if provided ! ! ! "
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get user expesnes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/expense/user/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"expense",
+						"user",
+						"1"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2024-07-30",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get overall expenses",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/expense/overall",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"expense",
+						"overall"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2024-07-30",
+							"description": "optional",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "download balance sheet",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/expense/balance-sheet",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"expense",
+						"balance-sheet"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2024-01-01",
+							"description": "optional",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

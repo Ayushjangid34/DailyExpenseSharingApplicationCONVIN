@@ -1,15 +1,20 @@
 {
   "name": "assignment",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "CONVIN.AI assignment",
   "main": "index.js",
   "scripts": {
-    "test": "mocha integration.test.js",
-    "start": "node index.js" 
+    "test": "mocha ./__tests__/integration.test.js",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ayushjangid34/DailyExpenseSharingApplicationCONVIN.git#main"
   },
   "author": "ayushjangid34@gmail.com",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.4.7",
     "exceljs": "^4.4.0",
     "express": "^4.19.2",
     "mocha": "^10.7.0",
@@ -18,5 +23,9 @@
   "devDependencies": {
     "chai": "^5.1.1",
     "supertest": "^7.0.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/Ayushjangid34/DailyExpenseSharingApplicationCONVIN/issues"
+  },
+  "homepage": "https://github.com/Ayushjangid34/DailyExpenseSharingApplicationCONVIN/tree/main#readme"
 }

@@ -1,7 +1,7 @@
 # CONCVIN.AI ASSIGNMENT
 
 ## Description
-This repository contains the backend project that was an assignment from COVIN.AI. It is a Daily Expense Sharing Application, which allows us to split our daily expenses among users using different split methods based on percentages, equal shares, or exact amounts. The repository includes index.js, which serves as the entry point for the project (i.e., the server). Additionally, there is an SQL.sql file that we can use while setting up the MySQL database. Integration test cases are written in the integration.test.js file.
+This repository contains the backend project that was an assignment from COVIN.AI. It is a Daily Expense Sharing Application, which allows us to split our daily expenses among users using different split methods based on percentages, equal shares, or exact amounts. The repository includes [`index.js`](index.js ), which serves as the entry point for the project (i.e., the server). Additionally, there is a [`MySQL.sql`](MySQL.sql ) file that we can use while setting up the MySQL database. Integration test cases are written in the [`./__tests__/integration.test.js`](./__tests__/integration.test.js ), file.
 
 ## Features
 
@@ -11,9 +11,11 @@ This repository contains the backend project that was an assignment from COVIN.A
 
 - **Flexible API Endpoints:** Provides a range of API endpoints for creating users, retrieving user details, managing expenses, and getting overall expense summaries.
 
+- **Error Handling:** Comprehensive error handling for various scenarios, including missing fields, invalid formats, duplicate entries, and validation errors.
+
 - **Comprehensive Testing:** Includes integration tests to ensure the reliability and accuracy of the application's functionality, covering user management and expense processing.
 
-- **Flexible Amount Handling:** Capable of splitting amounts ranging from 0.001 to 9999999999.999 .
+- **Flexible Amount Handling:** Capable of splitting amounts ranging from 0.001 to 9999999999.999.
 
 - **Balance Sheet Download:** Provides functionality to download a detailed balance sheet in Excel format.
 
@@ -21,7 +23,7 @@ This repository contains the backend project that was an assignment from COVIN.A
 
 ### Create User
 
-- **URL:** `/createUser`
+- **URL:** `/user/create`
 - **Method:** `POST`
 - **Description:** Create a new user in the system.
 - **Request Body:**
@@ -43,15 +45,14 @@ This repository contains the backend project that was an assignment from COVIN.A
       ```
 - **Example Request:**
     ```http
-    POST /createUser
+    POST /user/create
     Content-Type: application/json
 
     {
-        "email": "john.doe@example.com",
-        "first_name": "John",
-        "middle_name": "M",
-        "last_name": "Doe",
-        "mobile_number": "9876543210"
+        "email": "Ayushjangid34@gmail.com",
+        "first_name": "Ayush",
+        "last_name": "Jangid",
+        "mobile_number": "7568983187"
     }
     ```
 - **Example Response:**
@@ -85,17 +86,16 @@ This repository contains the backend project that was an assignment from COVIN.A
       ```
   - **Example Request:**
     ```http
-    GET /user/info?email=john.doe@example.com
+    GET /user/info?email=Ayushjangid34@gmail.com
     ```
 - **Example Response:**
     ```json
     {
         "id": 1,
-        "email": "john.doe@example.com",
-        "first_name": "John",
-        "middle_name": "M",
-        "last_name": "Doe",
-        "mobile_number": "9876543210",
+        "email": "Ayushjangid34@gmail.com",
+        "first_name": "Ayush",
+        "last_name": "Jangid",
+        "mobile_number": "7568983187",
         "Joining": "2024-07-31T03:57:14",
         "Last_update": "2024-07-31T03:57:14"
   }
@@ -103,7 +103,7 @@ This repository contains the backend project that was an assignment from COVIN.A
 
 ### Retrieve User Expenses
 
-- **URL:** `/user/:user_id/expenses`
+- **URL:** `/expense/user/:user_id`
 - **Method:** `GET`
 - **Description:** Retrieve expenses for a specific user.
 - **URL Parameters:**
@@ -127,7 +127,7 @@ This repository contains the backend project that was an assignment from COVIN.A
       ```
 - **Example Request:**
     ```http
-    GET /user/1/expenses?date=2024-07-30
+    GET /expense/user/1?date=2024-07-30
     ```
 - **Example Response:**
     ```json
@@ -155,7 +155,7 @@ This repository contains the backend project that was an assignment from COVIN.A
 
 ### Retrieve Overall Expenses
 
-- **URL:** `/expenses/overall`
+- **URL:** `/expense/overall`
 - **Method:** `GET`
 - **Description:** Retrieve overall expenses and user summaries.
 - **Query Parameters:**
@@ -189,7 +189,7 @@ This repository contains the backend project that was an assignment from COVIN.A
       ```
  - **Example Request:**
     ```http
-    GET /expenses/overall?date=2024-07-30
+    GET /expense/overall?date=2024-07-30
     ```
 - **Example Response:**
     ```json
@@ -224,7 +224,7 @@ This repository contains the backend project that was an assignment from COVIN.A
             },
             {
                 "user_id": 1,
-                "email": "john.doe@example.com",
+                "email": "Ayushjangid34@gmail.com",
                 "total_amount_owed": "802257.949"
             },
             {
@@ -243,7 +243,7 @@ This repository contains the backend project that was an assignment from COVIN.A
 
 ### Add Expenses
 
-- **URL:** `/expenses/add`
+- **URL:** `/expense/add`
 - **Method:** `POST`
 - **Description:** Add a new expense and distribute it among participants.
 - **Request Body:**
@@ -272,7 +272,7 @@ This repository contains the backend project that was an assignment from COVIN.A
       ```
 - **Example Request:**
     ```http
-    POST /expenses/add
+    POST /expense/add
     Content-Type: application/json
 
    {
@@ -308,17 +308,17 @@ This repository contains the backend project that was an assignment from COVIN.A
 
 ### Generate and Download Balance Sheet
 
-- **URL:** `/expenses/balance-sheet`
+- **URL:** `/expense/balance-sheet`
 - **Method:** `GET`
 - **Description:** Generate and download a balance sheet in Excel format.
 - **Query Parameters:**
-    - `date` (optional): Used to download data accociated to this particular date only
+    - `date` (optional): Used to download data associated to this particular date only
 - **Response:**
     - **Success (200):** Returns an Excel file with individual and overall expenses.
  
 - **Example Request:**
     ```http
-    GET /expenses/balance-sheet?date=2024-07-30
+    GET /expense/balance-sheet?date=2024-07-30
     ```
 
 ## Error Codes
@@ -331,46 +331,67 @@ This repository contains the backend project that was an assignment from COVIN.A
 
 Make sure you have the following installed on your system:
 
-- **Node.js** (v20.16.0)
+- **Node.js** (v18.20.5)
 - **npm** (10.8.1)
 - **MySQL** (8.0.39)
 
 
-## Setup Instrictions
+## Setup Instructions
 
 1. **Clone the Repository:**
 
    ```bash
    git clone https://github.com/Ayushjangid34/DailyExpenseSharingApplicationCONVIN.git
     ```
-2. **Create the Database:** Execute the provided SQL script (SQL.sql) to create the MySQL database named “DailyExpSharingApp”. You can do this using a MySQL client or command line.
+2. **Create the Database:** Execute the provided SQL script [`MySQLDB.sql`](MySQLDB.sql) to create the MySQL database named “DailyExpSharingApp”. You can do this using a MySQL client like MySQL Workbench or using the CLI command provided below.
 
-3. **Configure Database Connection:**
-    - Navigate to the cloned repository.
-    - Open the `dbConnection.js` file.
-    - Update the `host`, `user`, and `password` fields according to your MySQL database configuration.
+   > **NOTE:** This command will drop the `DailyExpSharingApp` database every time it is executed. If you are an existing user, running this command will destroy all your previous data and set up a new database. I'm also using this command every time to clean the database and execute test cases without any interruptions. Please execute it wisely.
+
+   ```bash
+   mysql -u <username> -p < MySQLDB.sql
+
+3. **Configure Environment Variables:**
+    Edit [`.env`](.env) file according to your local setup using any text editor or IDE:
+
+    ```properties
+    # Database Configuration
+    DB_HOST=localhost
+    DB_USER=root
+    DB_PASSWORD=yourpassword
+    DB_NAME=DailyExpSharingApp
+    DB_PORT=3306
+
+    # Other Environment Variables
+    SERVER_PORT=3000
+    ```
+
 4. **Install Dependencies:** Open your terminal and run the following command:
-```bash
-npm install
-```
+  ```bash
+  npm install
+  ```
 5. **Start the Server:** To run the server, execute:
-```bash
-npm start
-```
+  ```bash
+  npm start
+  ```
 
 6. **Run Integration Tests:** To perform integration testing, run:
-```bash
-npm test
-```
-## Additional Point to keep in Mind
+  ```bash
+  npm test
+  ```
+
+
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://www.postman.com/satellite-technologist-14502930/workspace/daily-sharing-application-postman/example/39808649-d0a261ab-491e-48fd-abea-57ad0e24eb9f?action=share&creator=39808649&ctx=documentation)
+
+
+
+## Additional Points to Keep in Mind
 + Always refer to the API documentation for logical requests.
 + The person creating the expense split must be a participant.
 + Ensure that every participant is registered before making API requests to avoid server errors.
 
-Feel free to ask queries ! 😊
+Feel free to ask queries! 😊
 
 ## 🔗 Links
-[![Gmail](https://img.shields.io/badge/Gmail-%23D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:ayushjangid34@gmail.com)
+[![Gmail](https://img.shields.io/badge/Gmail-%23D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:contact.ayushjangid@gmail.com)
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/ayushjangid34)
 [![Phone](https://img.shields.io/badge/📞%20Phone-%23007BFF?style=for-the-badge&logo=phone&logoColor=white)](tel:+917568983187)
-
