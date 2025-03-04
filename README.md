@@ -343,14 +343,24 @@ Make sure you have the following installed on your system:
    ```bash
    git clone https://github.com/Ayushjangid34/DailyExpenseSharingApplicationCONVIN.git
     ```
-2. **Create the Database:** Execute the provided SQL script [`MySQLDB.sql`](MySQLDB.sql) to create the MySQL database named “DailyExpSharingApp”. You can do this using a MySQL client like MySQL Workbench or using the CLI command provided below.
+2. **Go to Project Directory:**
+
+   ```bash
+   cd DailyExpenseSharingApplicationCONVIN
+   
+3. **Create the Database:** Execute the provided SQL script [`MySQL.sql`](MySQL.sql) to create the MySQL database named “DailyExpSharingApp”. You can do this using a MySQL client like MySQL Workbench or using the CLI command provided below.
 
    > **NOTE:** This command will drop the `DailyExpSharingApp` database every time it is executed. If you are an existing user, running this command will destroy all your previous data and set up a new database. I'm also using this command every time to clean the database and execute test cases without any interruptions. Please execute it wisely.
 
    ```bash
    mysql -u <username> -p < MySQLDB.sql
+   ```
+   Example:
+    ```bash
+   mysql -u root -p < MySQLDB.sql
+   ```
 
-3. **Configure Environment Variables:**
+4. **Configure Environment Variables:**
     Edit [`.env`](.env) file according to your local setup using any text editor or IDE:
 
     ```properties
@@ -365,16 +375,16 @@ Make sure you have the following installed on your system:
     SERVER_PORT=3000
     ```
 
-4. **Install Dependencies:** Open your terminal and run the following command:
+5. **Install Dependencies:** Open your terminal and run the following command:
   ```bash
   npm install
   ```
-5. **Start the Server:** To run the server, execute:
+6. **Start the Server:** To run the server, execute:
   ```bash
   npm start
   ```
 
-6. **Run Integration Tests:** To perform integration testing, run:
+7. **Run Integration Tests:** To perform integration testing, run:
   ```bash
   npm test
   ```
