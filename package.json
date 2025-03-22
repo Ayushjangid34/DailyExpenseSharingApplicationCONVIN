@@ -16,13 +16,13 @@
   "dependencies": {
     "dotenv": "^16.4.7",
     "exceljs": "^4.4.0",
-    "express": "^4.19.2",
-    "mocha": "^10.7.0",
-    "mysql2": "^3.11.0"
+    "express": "^4.21.2",
+    "mocha": "^11.1.0",
+    "mysql2": "^3.14.0"
   },
   "devDependencies": {
-    "chai": "^5.1.1",
-    "supertest": "^7.0.0"
+    "chai": "^5.2.0",
+    "supertest": "^7.1.0"
   },
   "bugs": {
     "url": "https://github.com/Ayushjangid34/DailyExpenseSharingApplicationCONVIN/issues"

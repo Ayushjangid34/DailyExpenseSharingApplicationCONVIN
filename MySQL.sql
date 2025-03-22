@@ -8,8 +8,8 @@ CREATE TABLE IF NOT EXISTS users (
     middle_name VARCHAR(100),
     last_name VARCHAR(100) NOT NULL,
     mobile_number VARCHAR(10) UNIQUE NOT NULL, -- RN only indian users are considered
-    joining DATETIME NOT NULL,
-    last_update DATETIME NOT NULL -- This column can be used when user update his/her information to show the updation date
+    joining DATETIME DEFAULT CURRENT_TIMESTAMP,
+    last_update DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP -- This column can be used when user update his/her information to show the updation date
     -- Password can also be stored here in hashed formate if we want autentication
 );
 
@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS expenses (
     id INT PRIMARY KEY AUTO_INCREMENT,
     title VARCHAR(100) NOT NULL,
     description TEXT,
-    date DATETIME NOT NULL,
+    date DATETIME DEFAULT CURRENT_TIMESTAMP,
     split_method ENUM('equal', 'exact', 'percentage'),
     total_amount DECIMAL(13, 3) NOT NULL,  -- Value upto 9999999999.999 can be stored
     created_by INT, -- The usedID who created this expense split
@@ -37,39 +37,3 @@ CREATE TABLE IF NOT EXISTS participations (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
     FOREIGN KEY (expense_id) REFERENCES expenses(id) ON DELETE CASCADE
 );
-
-
--- Dropping the triggers if they are already present due to last partial script run
-DROP TRIGGER IF EXISTS update_user_joining;
-DROP TRIGGER IF EXISTS update_user_last_update;
-DROP TRIGGER IF EXISTS set_default_date_before_insert;
-
-DELIMITER $$
--- Trigger for user creation
-CREATE TRIGGER update_user_joining
-BEFORE INSERT ON users
-FOR EACH ROW
-BEGIN
-    SET NEW.joining = NOW();
-    SET NEW.last_update = NOW();
-END$$
-
--- Trigger for user data updatation
-CREATE TRIGGER update_user_last_update
-BEFORE UPDATE ON users
-FOR EACH ROW
-BEGIN
-    SET NEW.last_update = NOW();
-END$$
-
--- Trigger for using default date in expesnes if not provided !
-CREATE TRIGGER set_default_date_before_insert
-BEFORE INSERT ON expenses
-FOR EACH ROW
-BEGIN
-    IF NEW.date IS NULL THEN
-        SET NEW.date = CURRENT_TIMESTAMP;
-    END IF;
-END$$
-
-DELIMITER ;
